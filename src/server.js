@@ -9,13 +9,15 @@ const PORT = 3000;
 const app = express();
 const logger = morgan("dev");
 
-app.use(logger);
+app.set("view engine", "pug");
+app.set("views", process.cwd() + "/src/views");//views의 경로 세팅
 
+app.use(logger);
 //ROUTERS
 app.use("/", globalRouter);
 app.use("/videos", videoRouter);  
 app.use("/users", userRouter)
-
+console.log(process.cwd() + "/src/views");
 const handleListening = () => 
 console.log(`Server Listenting on port http://localhost:${PORT}`)
 
