@@ -4,7 +4,7 @@
     What?
 }
 
-# [UPDATE 2] SET UP
+# [UPDATE 2] SET UP 
 Project Set up
 {
 	npm 의존성, pakage.json

@@ -1,13 +1,17 @@
+const fakeUser = {
+    username: "Jung",
+    loggedIn: true
+};
 export const trendingVideos = (req, res) => {
-    res.render("home");
+    res.render("home", { pageTitle : "Home" , fakeUser });
 }
 
 export const see = (req, res) => {
-    res.send(`Watch Video #${req.params.id}`);
+    res.render("watch", { pageTitle: "Watch" });
 }
 
 export const edit = (req, res) => {
-    res.send("edit");
+    res.render("edit", { pageTitle: "Edit" });
 }
 
 export const search = (req, res) => {
