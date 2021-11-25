@@ -45,3 +45,22 @@ EXPRESS{
     /videos/comments  -> Comment on a Video
     /videos/comments/delete  -> Delete A Comment of a Video
 }
+
+# [UPDATE 5] TEMPLATES
+PUG
+{
+    Configurating PUG
+    Pratials
+    Extending Templates
+    Variables to Templates
+    MVP Styles
+    Conditionals (if)
+    Iteration(for each)
+    Mixins(pug 재사용)
+}
+
+# [UPDATE 6] MONGODB, MONGOOSE
+{
+    Array Database
+    post Routing
+}
