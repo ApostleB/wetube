@@ -1,14 +1,16 @@
 import Video from "../models/Video";
 
-export const home = (req, res) => {
-    console.log("Start");
+export const home = async (req, res) => {
+/* 
+    callback방식
     //{} = 전부 찾는다
-    Video.find({}, (err, videos) =>  {
-        console.log("Finished");
-        //db검색이 끝나고 rendering을 시켜줘야 하기 때문에
-        return res.render("home", { pageTitle : "Home", videos: [] });
-    });
-    console.log("hello")    //이게 먼저 출력된다.
+    // Video.find({}, (err, videos) =>  {
+    // });
+*/
+    //DB가 다 불러질때까지 기다린다.
+    // await은 function안에서만 사용이 가능하다.
+    const videos = await Video.find({});
+    return res.render("home", { pageTitle: "Home", videos });
 }
 
 export const watch = (req, res) => {
@@ -32,9 +34,17 @@ export const getUpload = (req, res) => {
     return res.render("upload",{ pageTitle: `Upload Video` });
 }
 
-export const postUpload = (req, res) => {
+export const postUpload = async (req, res) => {
     //video array
-    const { title } = req.body
-
+    const { title, description, hashtags } = req.body;
+    //DB에 저장할 데이터 검증(Validation)
+    //const Video = new Video({
+    await Video.create({
+        title,
+        description,
+        hashtags: hashtags.split(",").map(word => `#${word}`), 
+    })
+    //DB에 저장, promise를 return한다.
+    
     return res.redirect("/");
 };
