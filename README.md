@@ -63,4 +63,10 @@ PUG
 {
     Array Database
     post Routing
+    MongoDB Setting
+    server.js/init.js분할git 
+    db Validation
+    db Middlewares static
+    db search
+    video CRUD
 }
