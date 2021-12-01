@@ -2,6 +2,7 @@
 //server의 configuration에 관련된 코드만 처리하기 위한 파일
 import "./db";
 import "./models/Video";
+import "./models/User";
 import app from "./server";
 const PORT = 3000;
 
