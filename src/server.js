@@ -1,8 +1,10 @@
 import express from "express";  //node modules/express를 찾음
 import morgan from "morgan";
+import session from "express-session";
 import rootRouter from "./routers/rootRouter";
 import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
+import { localsMiddleware } from "./middlewares";
 
 const app = express();
 const logger = morgan("dev");
@@ -13,6 +15,16 @@ app.set("views", process.cwd() + "/src/views");//views의 경로 세팅
 //middleware
 app.use(logger);
 app.use(express.urlencoded({ extended: true}));
+
+//session connect.sid
+app.use(session({
+    secret: "Hello",
+    resave:true,
+    saveUninitialized: true,
+}));
+
+app.use(localsMiddleware);
+
 //ROUTERS
 app.use("/", rootRouter);
 app.use("/videos", videoRouter);  
