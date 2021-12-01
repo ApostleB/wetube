@@ -1,26 +1,21 @@
 노마드 코더 유튜브 클론코딩
 # [UPDATE 1] SET UP
-{
     What?
-}
+
 
 # [UPDATE 2] SET UP 
-Project Set up
-{
 	npm 의존성, pakage.json
 	Babel
 	Nodemon
 }
 
 # [UPDATE 3] INTRODUCTION TO EXPRESS
-EXPRESS{
     server
     middleware
     controller    
-}
+
 
 # [UPDATE 4] ROUTERS
-{
     Cleaning the Code
     import, export
     URL Parmeter
@@ -44,11 +39,9 @@ EXPRESS{
 
     /videos/comments  -> Comment on a Video
     /videos/comments/delete  -> Delete A Comment of a Video
-}
+
 
 # [UPDATE 5] TEMPLATES
-PUG
-{
     Configurating PUG
     Pratials
     Extending Templates
@@ -57,10 +50,9 @@ PUG
     Conditionals (if)
     Iteration(for each)
     Mixins(pug 재사용)
-}
+
 
 # [UPDATE 6] MONGODB, MONGOOSE
-{
     Array Database
     post Routing
     MongoDB Setting
@@ -69,4 +61,7 @@ PUG
     db Middlewares static
     db search
     video CRUD
-}
+
+# [UPDATE 7] USER AUTHENTICATION
+    Create UserModel
+    
