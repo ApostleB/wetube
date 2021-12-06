@@ -13,23 +13,23 @@ html(lang="ko")
                 ul 
                     li
                         a(href="/") Home
-                    
-                    li 
-                        a(href="/videos/upload") Upload Video
-                    li
-                        a(href="/search") Search
-                        //- locals에 있는 값은 pug에서 바로 읽을수있다.
                     if loggedIn
                         li
-                            a(href="/") Logout
-                        li  
-                            a(href="/my-profile") #{loggedInUser.name}의 프로필
+                            a(href="/users/logout") Logout
+                        li
+                            a(href="/users/edit") Edit Profile
                     else
                         li
                             a(href="/login") Login
                         li
                             a(href="/join") Join
+                    li 
+                        a(href="/videos/upload") Upload Video
+                    li
+                        a(href="/search") Search
+                        //- locals에 있는 값은 pug에서 바로 읽을수있다.                    
         main 
             block content
+
     include partials/footer
     

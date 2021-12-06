@@ -24,5 +24,3 @@ db.on("error", (err) => console.log("☣️🚫DB Error", err));  //db.on은 여
 
 //db.once는 오로지 한번만 발생하는 이벤트
 db.once("open", () => console.log("✔️ Connect to DB!!👌"));   
-
-
