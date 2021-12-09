@@ -13,12 +13,8 @@ const logger = morgan("dev");
 
 app.set("view engine", "pug");
 app.set("views", process.cwd() + "/src/views");//views의 경로 세팅
-
-//middleware
 app.use(logger);
 app.use(express.urlencoded({ extended: true}));
-
-//session connect.sid
 app.use(
   session({
     secret: process.env.COOKIE_SECRET,
@@ -28,13 +24,14 @@ app.use(
   })
 );
 
-app.use(localsMiddleware);
 
-//ROUTERS
+
+app.use(localsMiddleware);
 app.use("/", rootRouter);
+app.use("/uploads", express.static("uploads"));
 app.use("/videos", videoRouter);  
 app.use("/users", userRouter)
-console.log(process.cwd() + "/src/views");
+// console.log(process.cwd() + "/src/views");
 
 export default app;
 

@@ -33,21 +33,6 @@ export const getEdit = async (req, res) => {
     return res.status(404).render("404", { pageTitle: "404 NOT FOUND" });
 }
 
-// export const postEdit = async (req, res) => {
-//     const { id } = req.params;
-//     const { title, description, hashtags } = req.body;
-//     const video = await Video.exists({ _id: id });
-//     if (!video) {
-//         return res.render("404", { pageTitle: "Video not found." });
-//     }
-//     await Video.findByIdAndUpdate(id, {
-//       title,
-//       description,
-//       hashtags: Video.formatHashtags(hashtags)
-//     });
-//     return res.redirect(`/videos/${id}`);
-// };
-
 export const postEdit = async (req, res) => {
   const { id } = req.params;
   const { title, description, hashtags } = req.body;
@@ -69,19 +54,26 @@ export const getUpload = (req, res) => {
 }
 
 export const postUpload = async (req, res) => {
-    //video array
-    const { title, description, hashtags } = req.body;
-    //DB에 저장할 데이터 검증(Validation)
-    //const Video = new Video({
-    await Video.create({
-      title,
-      description,
-      hashtags: Video.formatHashtags(hashtags),
-      // .split(",") 미들웨어에서 처리 해줌
-      // .map((word) => word.startsWith("#") ? word : `#${word}`)
-    });
-    //DB에 저장, promise를 return한다.
-    
+    const {
+        session:{
+            user:{ _id }
+        },
+        body:{
+            title,description,hashtags
+        },
+        file
+    } = req;
+    try{
+        await Video.create({
+            title,
+            fileUrl: file.path,
+            description,
+            owner: _id,
+            hashtags: Video.formatHashtags(hashtags),
+        });
+    }catch(error){
+        console.log("videoController->postUpload ERROR : ",error)
+    }
     return res.redirect("/");
 };
 

@@ -5,14 +5,17 @@ import mongoose from "mongoose";
 
 //데이터 형태 정의
 const videoSchema = new mongoose.Schema({
-  title: { type: String, required: true, trim: true, },
-  description: { type: String, required: true, trim: true, },
-  createdAt: { type: Date, required:true, default:Date.now},
-  hashtags: [{ type: String, trim:true }],
+  title: { type: String, required: true, trim: true },
+  fileUrl: { type: String, required: true },
+  description: { type: String, required: true, trim: true },
+  createdAt: { type: Date, required: true, default: Date.now },
+  hashtags: [{ type: String, trim: true }],
   meta: {
-    views: { type: Number, default:0, required:true },
-    rating: { type: Number, default:0, required:true },
+    views: { type: Number, default: 0, required: true },
+    rating: { type: Number, default: 0, required: true },
   },
+  //타입은 ObjectId이고 필수, User의 _ID를 참조하겠다.
+//   owner: { type: mongoose.Types.ObjectId, required: true, ref: "User" },
 });
 
 videoSchema.static("formatHashtags", function (hashtags) {

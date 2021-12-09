@@ -1,14 +1,14 @@
+import multer from "multer";
+
 export const localsMiddleware = (req, res, next) => {
-    console.log(req.session);
     res.locals.siteName = "Wetube"
     res.locals.loggedIn = req.session.loggedIn;
     res.locals.loggedInUser = req.session.user || {};
-    if(req.session.user){
-        console.log("!!", req.session.user.email);
-    }
-    
+    console.log("sessoin._id : ", req.session.user._id);
+
     next();
 }
+
 
 //
 export const protectorMiddleware = (req, res, next) => {
@@ -29,3 +29,17 @@ export const publicOnlyMiddleware = (req, res, next) => {
         return res.redirect("/");
     }
 }
+
+export const avatarUpload = multer({
+    dest: "uploads/avartars/",
+    limits:{
+        fileSize: 3000000,
+    }
+});
+
+export const videoUpload = multer({
+    dest:"uploads/videos",
+    limits:{
+        fileSize: 100000000,
+    }
+})

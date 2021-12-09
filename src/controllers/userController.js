@@ -3,13 +3,21 @@ import bcrypt from "bcrypt";
 import fetch from "node-fetch";
 import "dotenv/config";
 
+export const userHome = (req,res) => {
+    console.log(req.session);
+    res.render("test", {
+      pageTitle: "USER HOME",
+      user: res.locals.loggedInUser,
+    });
+}
+
+
 export const getJoin = (req, res) => {
     res.render("join", {
         pageTitle: "Join"
     });;
 };
 export const postJoin = async (req, res) => {
-    console.log(req.body);
     const {
         name,
         username,
@@ -18,8 +26,7 @@ export const postJoin = async (req, res) => {
         password2,
         location
     } = req.body;
-    console.log("password : ", password);
-    console.log("password2 : ", password2);
+    
     if (password !== password2) {
         const errorMessage = "Password confirmation does not match";
         return res.status(400).render("join", {
@@ -58,13 +65,11 @@ export const postJoin = async (req, res) => {
     }
 
 };
-
 export const getLogin = (req, res) => {
     res.render("login", {
         pageTitle: "Login"
     });
 };
-
 export const postLogin = async (req, res) => {
     const {
         username,
@@ -97,7 +102,6 @@ export const postLogin = async (req, res) => {
     req.session.user = user;
     res.redirect("/");
 };
-
 export const startGithubLogin = (req, res) => {
     const baseUrl = "https://github.com/login/oauth/authorize";
     const config = {
@@ -109,7 +113,6 @@ export const startGithubLogin = (req, res) => {
     const finalUrl = `${baseUrl}?${params}`;
     return res.redirect(finalUrl);
 };
-
 export const finishGithubLogin = async (req, res) => {
     const baseUrl = "https://github.com/login/oauth/access_token";
     const config = {
@@ -176,23 +179,77 @@ export const finishGithubLogin = async (req, res) => {
         return res.redirect("/login");
     }
 }
-
 export const getEdit = (req, res) => {
     return res.render("edit-profile", {
         pageTitle: "Edit Profile",
         user:res.locals.loggedInUser
     })
 };
-
-export const postEdit = (req, res) => {
-    return res.render("edit-profile");
+export const postEdit = async (req, res) => {
+    const { 
+        session: {
+            user:{ _id, avatarUrl } ,
+        },
+        body: { name, email, username, location },
+        file,
+    } = req;
+    const updateUser = await User.findByIdAndUpdate( _id, {
+        avatarUrl: file? file.path : avatarUrl,
+        name,
+        email,
+        username,
+        location
+    }, { new:true }); //새로 업데이트된 내용을 바로 반영
+    req.session.user = updateUser;
+    return res.redirect("/users/edit");    
 };
-
 export const logout = (req, res) => {
+    // console.log("LOGOUT : ",req.session);
     req.session.destroy();
     res.redirect("/");
 };
+export const getChangePassword = (req, res) => {
+    //send notification
+    if(req.session.user.socialOnly === true){
+        return res.redirect("/");
+    }
+    return res.render("users/change-password", {
+      pageTitle: "Change Password",
+    });
+}
+export const postChangePassword = async (req, res) => {
+    const pageTitle = "Change Password";
+    const {
+      session: {
+        user: { _id },
+      },
+      body: { oldPassword, newPassword, newPasswordConfirm },
+    } = req;
+    const user = await User.findById(_id);
+    const ok = await bcrypt.compare(oldPassword, user.password);
 
-export const see = (req, res) => {
-    res.send("See Profile")
+    if (!ok) {
+      return res.status(400).render("users/change-password", {
+        pageTitle,
+        errorMessage: "기존 패스워드를 다시 확인해주세요",
+      });
+    }
+
+    if( newPassword !== newPasswordConfirm ){
+        return res.status(400).render("users/change-password", {
+          pageTitle,
+          errorMessage: "새로운 패스워드를 다시 확인해주세요",
+        });
+    }
+
+    user.password = newPassword;
+    await user.save();
+    req.session.user.password = user.password;
+    return res.redirect("logout");
 };
+export const see = async (req,res) => {
+    const { id } = req.params;
+    const user = await User.findById(id);
+    if(!user) return res.status(404).render("404", {pageTitle:"User not found"});
+    return res.render("users/profile", { pageTitle:user.name, user});
+}

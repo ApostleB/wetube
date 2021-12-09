@@ -1,9 +1,16 @@
 extends base
 
 block content
-    form(action="/edit" method="post") 
+    
+    form(action="edit" method="post", enctype="multipart/form-data") 
+        img(src="/" + loggedInUser.avatarUrl, width="100", height="100")
+        label(for="avatar")  Avatar
+        input(type="file", id="avatar", name="avatar", accept="image/*")
         input(name="name" placeholder="Name" type="text" required value=loggedInUser.name)
         input(name="email" placeholder="Email" type="text" required value=loggedInUser.email)
         input(name="username" placeholder="UserName" type="text" required value=loggedInUser.username)
         input(name="location" placeholder="Location" type="text" required value=loggedInUser.location)
         input(type="submit", value="Submit")
+        if !loggedInUser.socialOnly
+            hr
+            a(href="change-password") Password Change &rarr;
