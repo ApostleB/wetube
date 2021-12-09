@@ -65,3 +65,9 @@
 # [UPDATE 7] USER AUTHENTICATION
     Create UserModel
     
+# [UPDATE 8] USER PROFILE
+    Custom Middleware
+    Password Model
+    Static Files Add
+    Video Owner Check
+    Bugfix
