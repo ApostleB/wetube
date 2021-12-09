@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import fetch from "node-fetch";
 import "dotenv/config";
 
+// 버그를 찾기 위한 테스트용 URL
 export const userHome = (req,res) => {
     console.log(req.session);
     res.render("test", {
@@ -10,8 +11,6 @@ export const userHome = (req,res) => {
       user: res.locals.loggedInUser,
     });
 }
-
-
 export const getJoin = (req, res) => {
     res.render("join", {
         pageTitle: "Join"
