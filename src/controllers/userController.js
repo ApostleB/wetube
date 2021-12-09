@@ -4,16 +4,8 @@ import fetch from "node-fetch";
 import "dotenv/config";
 import Video from "../models/Video";
 
-// 버그를 찾기 위한 테스트용 URL
-export const userHome = (req,res) => {
-    console.log(req.session);
-    res.render("test", {
-      pageTitle: "USER HOME",
-      user: res.locals.loggedInUser,
-    });
-}
 export const getJoin = (req, res) => {
-    res.render("join", {
+    res.render("users/join", {
         pageTitle: "Join"
     });;
 };
@@ -29,7 +21,7 @@ export const postJoin = async (req, res) => {
     
     if (password !== password2) {
         const errorMessage = "Password confirmation does not match";
-        return res.status(400).render("join", {
+        return res.status(400).render("users/join", {
             pageTitle: "Join",
             errorMessage
         });
@@ -43,7 +35,7 @@ export const postJoin = async (req, res) => {
     });
     if (exists) {
         const errorMessage = "This username/email is already taken.";
-        return res.status(400).render("join", {
+        return res.status(400).render("users/join", {
             pageTitle: "Join",
             errorMessage
         });
@@ -58,7 +50,7 @@ export const postJoin = async (req, res) => {
         });
         return res.redirect("login");
     } catch (error) {
-        return res.status(400).render("join", {
+        return res.status(400).render("users/join", {
             pageTitle: "error Join",
             errorMessage: "error Join"
         })
@@ -66,7 +58,7 @@ export const postJoin = async (req, res) => {
 
 };
 export const getLogin = (req, res) => {
-    res.render("login", {
+    res.render("users/login", {
         pageTitle: "Login"
     });
 };
@@ -83,7 +75,7 @@ export const postLogin = async (req, res) => {
     });
     //없으면 실패처리
     if (!user) {
-        return res.status(400).render("login", {
+        return res.status(400).render("users/login", {
             pageTitle,
             errorMessage: "아이디가 일치하지 않습니다."
         });
@@ -92,7 +84,7 @@ export const postLogin = async (req, res) => {
     const ok = await bcrypt.compare(password, user.password);
     //없으면 실패처리
     if (!ok) {
-        return res.status(400).render("login", {
+        return res.status(400).render("users/login", {
             pageTitle,
             errorMessage: "패스워드가 일치하지 않습니다.",
         });
@@ -180,7 +172,7 @@ export const finishGithubLogin = async (req, res) => {
     }
 }
 export const getEdit = (req, res) => {
-    return res.render("edit-profile", {
+    return res.render("users/edit-profile", {
         pageTitle: "Edit Profile",
         user:res.locals.loggedInUser
     })

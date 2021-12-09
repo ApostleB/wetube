@@ -71,3 +71,8 @@
     Static Files Add
     Video Owner Check
     Bugfix
+
+# [UPDATE 9] WEBPACK
+    Webpack Configuration
+    SCSS Loder
+    

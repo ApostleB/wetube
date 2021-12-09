@@ -4,7 +4,6 @@ import { avatarUpload, protectorMiddleware, publicOnlyMiddleware } from "../midd
 
 const userRouter = express.Router();
 
-userRouter.get("/", userHome);
 userRouter.get("/logout", logout);
 userRouter
 .route("/edit")
