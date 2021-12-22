@@ -28,7 +28,11 @@ app.use(
 
 app.use(localsMiddleware);
 app.use("/", rootRouter);
+
+//  /static주소를 통해 공개
 app.use("/uploads", express.static("uploads"));
+app.use("/static", express.static("assets"));
+
 app.use("/videos", videoRouter);  
 app.use("/users", userRouter)
 // console.log(process.cwd() + "/src/views");

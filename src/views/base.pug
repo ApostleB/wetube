@@ -4,8 +4,8 @@ html(lang="ko")
         //- locals에 있는 값은 pug에서 바로 읽을수있다.
         title #{pageTitle} | #{siteName}
         //- cdn css
-        link( rel="stylesheet" href="https://unpkg.com/mvp.css")
-
+        link(rel="stylesheet" href="https://unpkg.com/mvp.css")
+        link(rel="stylesheet", href="/static/css/styles.css")
     body
         header
             h1=pageTitle
@@ -33,5 +33,6 @@ html(lang="ko")
         main 
             block content
 
-    include partials/footer
-    
+        include partials/footer
+    script(src="/static/js/main.js")
+    block scripts

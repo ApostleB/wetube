@@ -75,4 +75,4 @@
 # [UPDATE 9] WEBPACK
     Webpack Configuration
     SCSS Loder
-    
+    nodemon config/setting

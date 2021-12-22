@@ -56,6 +56,7 @@ export const getUpload = (req, res) => {
     return res.render("videos/upload",{ pageTitle: `Upload Video` });
 }
 export const postUpload = async (req, res) => {
+    console.log("NEW!!!!!!!!!",req.session);
     const {
         session:{
             user:{_id},
@@ -76,7 +77,6 @@ export const postUpload = async (req, res) => {
         });
         const user = await User.findById(_id);
         user.videos.push(newVideo._id);
-
         user.save();
     }catch(error){
         console.log("videoController->postUpload 에러 : ",error)
