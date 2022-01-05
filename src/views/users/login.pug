@@ -7,9 +7,7 @@ block content
         input(name="username" placeholder="Username" type="text" required)
         input(name="password" placeholder="Password" type="text" required)
         input(type="submit", value="Login")
-        br
-        a(href="/users/github/start") 깃허브 &rarr;
-    hr
-    div   
+        include ../partials/social-login
+    div.auth-switch   
         span Already have an account? 
         a(href="/join") Create one now  &rarr;

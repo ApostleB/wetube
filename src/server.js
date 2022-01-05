@@ -6,6 +6,7 @@ import rootRouter from "./routers/rootRouter";
 import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
 import { localsMiddleware } from "./middlewares";
+import apiRouter from "./routers/apiRouter";
 
 
 const app = express();
@@ -24,18 +25,17 @@ app.use(
   })
 );
 
-
-
 app.use(localsMiddleware);
 app.use("/", rootRouter);
 
 //  /static주소를 통해 공개
 app.use("/uploads", express.static("uploads"));
 app.use("/static", express.static("assets"));
+app.use("/favicon", express.static("favicon"));
 
+app.use("/api", apiRouter);
 app.use("/videos", videoRouter);  
 app.use("/users", userRouter)
-// console.log(process.cwd() + "/src/views");
 
 export default app;
 

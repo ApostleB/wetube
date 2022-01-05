@@ -1,4 +1,4 @@
-import morgan from "morgan";
+// import morgan from "morgan";
 import User from "../models/User";
 import Video from "../models/Video";
 
@@ -11,7 +11,7 @@ export const home = async (req, res) => {
 */
     //DB가 다 불러질때까지 기다린다.
     // await은 function안에서만 사용이 가능하다.
-    const videos = await Video.find({}).sort({ createdAt:"desc" });
+    const videos = await Video.find({}).sort({ createdAt:"desc" }).populate("owner");
     return res.render("home", { pageTitle: "Home", videos });
 }
 export const watch = async (req, res) => {
@@ -104,10 +104,22 @@ export const search = async (req, res) => {
             title: { 
                 $regex: new RegExp(`${keyword}`, "i")
             }
-        });
+        }).populate("owner");
         return res.render("videos/search", { pageTitle: `Search : ${videos.length}`, videos });
     }else{
         const videos = [];
         return res.render("videos/search", { pageTitle: "Search", videos });
     }
 }
+
+export const registerView = async (req, res) => {
+    const { id } = req.params;
+    const video = await Video.findById(id);
+    if (!video) {
+      return res.sendStatus(404);
+    }
+    video.meta.views = video.meta.views + 1;
+    await video.save();
+    console.log("ended");
+    return res.sendStatus(200);
+};
