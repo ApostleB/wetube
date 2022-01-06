@@ -81,6 +81,18 @@ const handleFullscreen = () => {
   }
 };
 
+const handleVideoDbClick = () => {
+    const fullscreen = document.fullscreenElement;
+    if (fullscreen) {
+      document.exitFullscreen();
+      fullScreenIcon.classList = "fas fa-expand";
+    } else {
+      videoContainer.requestFullscreen();
+      fullScreenIcon.classList = "fas fa-compress";
+    }
+}
+
+
 const hideControls = () => videoControls.classList.remove("showing");
 
 const handleMouseMove = () => {
@@ -108,7 +120,12 @@ const handleEnded = () => {
 }
 
 const handleVideoClick = () => {
-    
+    if (video.paused) {
+      video.play();
+    } else {
+      video.pause();
+    }
+    playBtnIcon.classList = video.paused ? "fas fa-play" : "fas fa-pause";
 }
 
 playBtn.addEventListener("click", handlePlayClick);
@@ -118,6 +135,7 @@ video.addEventListener("loadeddata", handleLoadedMetadata);
 video.addEventListener("timeupdate", handleTimeUpdate);
 video.addEventListener("ended", handleEnded);
 video.addEventListener("click", handleVideoClick)
+video.addEventListener("dblclick", handleVideoDbClick);
 videoContainer.addEventListener("mousemove", handleMouseMove);
 videoContainer.addEventListener("mouseleave", handleMouseLeave);
 timeline.addEventListener("input", handleTimelineChange);
