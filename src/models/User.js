@@ -10,8 +10,9 @@ const userSchema = new mongoose.Schema({
   password: { type: String },
   name: { type: String, require: true },
   location: String,
+  comments: [{type: mongoose.Schema.Types.ObjectId, ref: "Comment"}],
   videos: [{ type: mongoose.Schema.Types.ObjectId, ref: "Video" }],
-});
+}); 
 
 //패스워드 해싱
 userSchema.pre("save", async function () {

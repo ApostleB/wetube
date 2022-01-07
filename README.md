@@ -1,7 +1,21 @@
 노마드 코더 유튜브 클론코딩
+
+# 사용기술
+    + Node.js
+    + express
+        + express session
+            + Mongo Store
+        + express flash
+    + Mongo DB
+        + mongoose
+    + Pug
+    + sass
+    + webpack
+    + Vanillar JS
+    + MVC Model
+
 # [UPDATE 1] SET UP
     What?
-
 
 # [UPDATE 2] SET UP 
 	npm 의존성, pakage.json
@@ -97,5 +111,6 @@
     flash message for redirect
 
 # [UPDATE 14 COMMENT]
+    Comments Model Define
 
 # [UPDATE 15 DEPLOYMENT]

@@ -197,7 +197,9 @@ export const postEdit = async (req, res) => {
 };
 export const logout = (req, res) => {
     req.session.destroy();
-    req.flash("info", "Bye Bye");
+    // req.session.user = null;
+    // req.session.loggedIn = false;
+    // req.flash("info", "Bye Bye");
     res.redirect("/");
 };
 export const getChangePassword = (req, res) => {

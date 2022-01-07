@@ -18,14 +18,14 @@ app.set("views", process.cwd() + "/src/views");//views의 경로 세팅
 app.use(logger);
 app.use(express.urlencoded({ extended: true}));
 app.use(
-  session({
-    secret: process.env.COOKIE_SECRET,
-    resave: false,
-    saveUninitialized: false,
-    store: MongoStore.create({ mongoUrl: process.env.DB_URL }),
-  })
+    session({
+        secret: process.env.COOKIE_SECRET,
+        resave: false,
+        saveUninitialized: false,
+        store: MongoStore.create({ mongoUrl: process.env.DB_URL }),
+    })
 );
-
+    
 app.use(flash());
 app.use(localsMiddleware);
 app.use("/", rootRouter);
