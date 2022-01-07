@@ -31,6 +31,7 @@ export const getEdit = async (req, res) => {
         return res.status(404).render("404", { pageTitle: "404 NOT FOUND" });
     }
     if (String(video.owner) !== String(_id)) {
+        req.flash("error", "You are not the owner of the video");
         return res.status(403).redirect("/");
     }
     return res.render("videos/edit", { pageTitle: `Editing: ${video.title}`, video});

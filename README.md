@@ -76,3 +76,26 @@
     Webpack Configuration
     SCSS Loder
     nodemon config/setting
+
+# [UPDATE  10] STYLES
+    SCSS Styling
+
+# [UPDATE 11 VIDEO PLAYER]
+    Vanillar JS for Custom Player
+        Controller Event
+
+# [UPDATE 12 VIEWS API]
+    Count Views
+        + Vanillar JS fetch Post
+
+# [UPDATE 13 VIDEO RECORDER]
+    Video Recording
+        웹캠 없음으로 화면공유로 대체
+
+
+# [UPDATE 13 FLASH MESSAGE]
+    flash message for redirect
+
+# [UPDATE 14 COMMENT]
+
+# [UPDATE 15 DEPLOYMENT]

@@ -1,5 +1,3 @@
-import { set } from "mongoose";
-import regeneratorRuntime from "regenerator-runtime";
 const startBtn = document.getElementById("startBtn");
 const video = document.getElementById("preview");
 
@@ -7,8 +5,7 @@ let stream;
 let recorder;
 let videoFile;
 
-const handleDownload = () => {
-    const a = document.createElement("a");
+const handleDownload = async () => {
     a.href = videoFile;
     a.download = "MyRecording.webm";
     document.body.appendChild(a);
@@ -29,6 +26,7 @@ const handleStart = () => {
   startBtn.removeEventListener("click", handleStart);
   startBtn.addEventListener("click", handleStop);
 
+  //저장 시작
   recorder = new MediaRecorder(stream);
   recorder.ondataavailable = (e) => {
       videoFile = URL.createObjectURL(e.data);
@@ -40,9 +38,10 @@ const handleStart = () => {
   recorder.start();
 };
 
+//녹화시작
 const init = async () => {
   stream = await navigator.mediaDevices.getDisplayMedia({
-    video: true,
+    video: { width: 800, height: 800 },
     audio: true,
   });
   video.srcObject = stream;
