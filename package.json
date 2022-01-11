@@ -1,49 +1,52 @@
 {
-  "name": "wetube",
-  "version": "1.0.0",
-  "description": "the best way to watch videos.",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ApostleB/wetube-reloaded.git"
-  },
-  "scripts": {
-    "dev:server": "nodemon",
-    "dev:assets": "webpack"
-  },
-  "author": "ApostleB",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ApostleB/wetube-reloaded/issues"
-  },
-  "homepage": "https://github.com/ApostleB/wetube-reloaded#readme",
-  "dependencies": {
-    "@ffmpeg/core": "^0.10.0",
-    "@ffmpeg/ffmpeg": "^0.10.1",
-    "bcrypt": "^5.0.1",
-    "connect-mongo": "^4.6.0",
-    "dotenv": "^10.0.0",
-    "express": "^4.17.1",
-    "express-flash": "^0.0.2",
-    "express-session": "^1.17.2",
-    "mongoose": "^6.0.13",
-    "morgan": "^1.10.0",
-    "multer": "^1.4.4",
-    "node-fetch": "^2.6.1",
-    "pug": "^3.0.2",
-    "regenerator-runtime": "^0.13.9"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.13.10",
-    "@babel/node": "^7.13.10",
-    "@babel/preset-env": "^7.13.10",
-    "babel-loader": "^8.2.3",
-    "css-loader": "^5.2.7",
-    "mini-css-extract-plugin": "^2.4.5",
-    "nodemon": "^2.0.7",
-    "sass": "^1.45.0",
-    "sass-loader": "^11.1.1",
-    "style-loader": "^2.0.0",
-    "webpack": "^5.65.0",
-    "webpack-cli": "^4.9.1"
-  }
+    "name": "wetube",
+    "version": "1.0.0",
+    "description": "the best way to watch videos.",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ApostleB/wetube-reloaded.git"
+    },
+    "scripts": {
+        "start": "node build/init.js",
+        "build":"babel src -d build",
+        "dev:server": "nodemon",
+        "dev:assets": "webpack"
+    },
+    "author": "ApostleB",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/ApostleB/wetube-reloaded/issues"
+    },
+    "homepage": "https://github.com/ApostleB/wetube-reloaded#readme",
+    "dependencies": {
+        "@ffmpeg/core": "^0.10.0",
+        "@ffmpeg/ffmpeg": "^0.10.1",
+        "bcrypt": "^5.0.1",
+        "connect-mongo": "^4.6.0",
+        "dotenv": "^10.0.0",
+        "express": "^4.17.1",
+        "express-flash": "^0.0.2",
+        "express-session": "^1.17.2",
+        "mongoose": "^6.0.13",
+        "morgan": "^1.10.0",
+        "multer": "^1.4.4",
+        "node-fetch": "^2.6.1",
+        "pug": "^3.0.2",
+        "regenerator-runtime": "^0.13.9"
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.16.8",
+        "@babel/core": "^7.16.7",
+        "@babel/node": "^7.13.10",
+        "@babel/preset-env": "^7.13.10",
+        "babel-loader": "^8.2.3",
+        "css-loader": "^5.2.7",
+        "mini-css-extract-plugin": "^2.4.5",
+        "nodemon": "^2.0.7",
+        "sass": "^1.45.0",
+        "sass-loader": "^11.1.1",
+        "style-loader": "^2.0.0",
+        "webpack": "^5.65.0",
+        "webpack-cli": "^4.9.1"
+    }
 }

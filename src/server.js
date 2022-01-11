@@ -17,6 +17,9 @@ app.set("view engine", "pug");
 app.set("views", process.cwd() + "/src/views");//views의 경로 세팅
 app.use(logger);
 app.use(express.urlencoded({ extended: true}));
+
+//varnilla js에서 post fetch를 할때 body를 못받아와서 미들웨어 추가 해줘야 함
+app.use(express.json());
 app.use(
     session({
         secret: process.env.COOKIE_SECRET,
