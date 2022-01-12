@@ -12,6 +12,6 @@ import app from "./server";
 const PORT = process.env.PORT || 3000;
 
 const handleListening = () =>
-  console.log(`Server Listenting on port http://localhost:${PORT}`);
+  console.log(`Server Listenting on port http://localhost1:${PORT}`);
 
 app.listen(PORT, handleListening);
