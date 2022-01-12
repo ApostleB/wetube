@@ -11,9 +11,11 @@ useNewUrlParser, useUnifiedTopology를 사용한다고 하는데
 */
 import mongoose from "mongoose";
 
-// mongoose.connect(uri);
+const uri = "mongodb+srv://verser:qf9138qf@cluster0.z941d.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
-mongoose.connect(process.env.DB_URL);
+mongoose.connect(uri);
+
+// mongoose.connect(process.env.DB_URL);
 // mongoose.connect("mongodb://127.0.0.1:27017/wetube", {
 //     useNewUrlParser: true,
 //     useUnifiedTopology: true,
