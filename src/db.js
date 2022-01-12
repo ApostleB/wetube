@@ -11,6 +11,8 @@ useNewUrlParser, useUnifiedTopology를 사용한다고 하는데
 */
 import mongoose from "mongoose";
 
+// mongoose.connect(uri);
+
 mongoose.connect(process.env.DB_URL);
 // mongoose.connect("mongodb://127.0.0.1:27017/wetube", {
 //     useNewUrlParser: true,
@@ -18,9 +20,6 @@ mongoose.connect(process.env.DB_URL);
 //     useFindAndModify:false,
 //     useCreateIndex: true,
 // });
-
-
-
 
 
 const db = mongoose.connection

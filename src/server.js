@@ -19,14 +19,16 @@ app.use(logger);
 app.use(express.urlencoded({ extended: true}));
 
 //varnilla js에서 post fetch를 할때 body를 못받아와서 미들웨어 추가 해줘야 함
+
 app.use(express.json());
 app.use(
-    session({
-        secret: process.env.COOKIE_SECRET,
-        resave: false,
-        saveUninitialized: false,
-        store: MongoStore.create({ mongoUrl: process.env.DB_URL }),
-    })
+  session({
+    secret: process.env.COOKIE_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    store: MongoStore.create({ mongoUrl: process.env.DB_URL }),
+    // store: MongoStore.create({ mongoUrl: uri }),
+  })
 );
     
 app.use(flash());
