@@ -1,3 +1,4 @@
+header
     a(href="/").header__logo
         i.fab.fa-youtube 
     nav
@@ -19,10 +20,14 @@
                         if loggedInUser.avartarUrl === ""
                             span 😊
                         else    
-                            img.header__avartar(src="/"+loggedInUser.avatarUrl)
+                            if loggedInUser.socialOnly.includes("github")
+                                img.header__avartar(src=loggedInUser.avatarUrl)
+                            else 
+                                img.header__avartar(src="/"+loggedInUser.avatarUrl)
+                        
             else
                 li
                     a(href="/login").header__btn Login
                 li
                     a(href="/join").header__btn Join
-                //- locals에 있는 값은 pug에서 바로 읽을수있다. 
+                //- locals에 있는 값은 pug에서 바로 읽을수있다.
