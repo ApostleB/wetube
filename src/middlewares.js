@@ -9,12 +9,19 @@ const s3 = new aws.S3({
     }
 })
 
-const multerUploader = multerS3({
+const isHeroku = process.env.NODE_ENV == "production";
+
+const s3ImageUploader = multerS3({
     s3:s3,
-    bucket: "wetube-verser",
+    bucket: "wetube-verser/avartars/",
     acl: "public-read",
 })
 
+const s3VideoUploader = multerS3({
+  s3: s3,
+  bucket: "wetube-verser/videos/",
+  acl: "public-read",
+});
 
 export const localsMiddleware = (req, res, next) => {
     res.locals.siteName = "Wetube"
@@ -52,16 +59,16 @@ export const publicOnlyMiddleware = (req, res, next) => {
 
 export const avatarUpload = multer({
     dest: "uploads/avartars/",
-    limits:{
+    limits: {
         fileSize: 3000000,
     },
-    storage: multerUploader,
+    storage: s3ImageUploader,
 });
 
 export const videoUpload = multer({
-    dest:"uploads/videos",
-    limits:{
+    dest: "uploads/videos",
+    limits: {
         fileSize: 100000000,
     },
-    storage: multerUploader,
-})
+    storage: s3VideoUploader,
+});

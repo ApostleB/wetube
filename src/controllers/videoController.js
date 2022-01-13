@@ -70,7 +70,8 @@ export const postUpload = async (req, res) => {
         },
         file
     } = req;
-    
+    const isHeroku = process.env.NODE_ENV === "production";
+
     try{
         const newVideo = await Video.create({
           title,
