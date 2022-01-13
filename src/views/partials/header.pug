@@ -20,10 +20,8 @@ header
                         if loggedInUser.avartarUrl === ""
                             span 😊
                         else    
-                            if loggedInUser.socialOnly.includes("github")
+                            if loggedInUser
                                 img.header__avartar(src=loggedInUser.avatarUrl)
-                            else 
-                                img.header__avartar(src="/"+loggedInUser.avatarUrl)
                         
             else
                 li
