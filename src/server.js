@@ -6,7 +6,7 @@ import MongoStore from "connect-mongo";
 import rootRouter from "./routers/rootRouter";
 import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
-import { localsMiddleware } from "./middlewares";
+import { localsMiddleware, testMiddleware } from "./middlewares";
 import apiRouter from "./routers/apiRouter";
 
 
@@ -32,7 +32,7 @@ app.use(
     // store: MongoStore.create({ mongoUrl: uri }),
   })
 );
-    
+app.use(testMiddleware);
 app.use(flash());
 app.use(localsMiddleware);
 app.use("/", rootRouter);

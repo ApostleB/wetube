@@ -15,11 +15,16 @@ const multerUploader = multerS3({
     acl: "public-read",
 })
 
+
 export const localsMiddleware = (req, res, next) => {
     res.locals.siteName = "Wetube"
     res.locals.loggedIn = req.session.loggedIn;
     res.locals.loggedInUser = req.session.user || {};
     // console.log("LOCAL MIDDLEWARE ", req.session.user);
+    next();
+}
+export const testMiddleware = (req, res, next) => {
+    // console.log(req.session);
     next();
 }
 
